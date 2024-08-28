@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scanner Manager</title>
+</head>
+
+<body>
+<div>
+    {{ map | safe }}
+</div>
+<br>
+<table style="border: 1px solid black">
+    <tr>
+        <th style="border: 1px solid black">
+            Carica Template:
+            <form method="POST" class="post-form" enctype="multipart/form-data" name="Template_upload">  
+                {% csrf_token %}  
+                {{ Tempform.as_p }}
+                <button type="submit" class="save btn btn-default" name="TempSub">Carica</button>  
+            </form>
+        </th>
+        
+        <th style="border: 1px solid black">
+            Carica rilievo matricole:
+            <form method="POST" class="post-form" enctype="multipart/form-data" name="Matricole_upload">  
+                {% csrf_token %}  
+                {{ RilForm.as_p }}  
+                <button type="submit" class="save btn btn-default" name="MatrSub">Carica</button>  
+            </form>
+        </th>
+
+            <th>Carica da cronologia
+            <form action="{%  url 'index2'%}" method="post">
+            {% csrf_token %}
+            <select id="playerselect" name="pitcher" class="player-dropdown">
+            {% for option in history %}
+                <option value="{{ option}}">{{ option }}</option>
+            {% endfor %}
+            <input type="submit" value="Carica"/>
+            </select>
+            </form>
+            </th>
+
+    </tr>
+</table>
+<br>
+    <button>
+        <a href="{% url 'download_cheatsheet' %}">Esporta</a>
+    </button>
+        
+</body>
+</html>

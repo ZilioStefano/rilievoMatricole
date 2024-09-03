@@ -68,7 +68,7 @@ def carica_matricole(file_name):
     map = map.style.applymap(highlight_Refuso2)
 
     Now = datetime.now()
-    NowStr = Now.strftime("%Y%m%d_%H%M%S")
+    NowStr = Now.strftime("%Y%m%d_%H%Md%S")
 
     writer = StyleFrame.ExcelWriter('currMap.xlsx', mode='a')
     map.to_excel(writer, index=False, header=False, sheet_name='new sheet')
@@ -82,7 +82,7 @@ def carica_matricole(file_name):
     history = pd.read_csv("ManagerRilievoMatricole/static/cronologia/history.csv")
 
     new_df = pd.DataFrame({"timestamp": Now, "filename": "ManagerRilievoMatricole/static/cronologia/table_" +
-                                                         NowStr+".html", "name": Now.strftime("%d_%M_%Y %H:%M")},
+                                                         NowStr+".html", "name": Now.strftime("%d_%m_%Y %H:%M")},
                           index=[0])
     new_history = pd.concat([history, new_df])
     new_history.to_csv("ManagerRilievoMatricole/static/cronologia/history.csv", index=False)
